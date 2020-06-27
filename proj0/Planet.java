@@ -1,5 +1,4 @@
 public class Planet{
-    private  static final double G = 6.67e-11;
     public double xxPos;
     public double yyPos;
     public double xxVel;
@@ -27,6 +26,7 @@ public class Planet{
     }
     /** describe the force exerted on this planet by the given planet.*/
     public double calcForceExertedBy(Planet p){
+	final double G = 6.67e-11;
 	return G * this.mass * p.mass / Math.pow(calcDistance(p), 2);
     }
     /** describe the force exerted in the X and Y directions */
@@ -36,15 +36,7 @@ public class Planet{
     public double calcForceExertedByY(Planet p){
         return this.calcForceExertedBy(p) * (p.yyPos - this.yyPos) / this.calcDistance(p);
     }
-    /** Compare two planet. */
-    private boolean equals(Planet p){
-	boolean result = true;
-	if(this.xxPos != p.xxPos) { result = false;}
-	else if (this.yyPos != p.yyPos) { result = false;}
-	else if (this.xxVel != p.xxVel) { result = false;}
-	else if (this.yyVel != p.yyVel) { result = false;}
-	return result;
-    }
+   
    /** calculate the net X and net Y force exerted by all planets. */
     public double calcNetForceExertedByX(Planet[] allPlanets){
 	double sum = 0;
