@@ -48,7 +48,7 @@ public class NBody{
 	/** Creating an Animation */
 	StdDraw.enableDoubleBuffering();
 	double t = 0.0;
-	while(true){
+	while(t < T){
 	    In in = new In(filename);
 	    int N = in.readInt();
 	    double[] xForces = new double[N];
@@ -68,10 +68,10 @@ public class NBody{
 	    StdDraw.pause(10);
 	    t += dt;
 	}
-	System.Out.printf("%d\n", P.length);
-	System.Out.printf("%.2e\n", R);
+	StdOut.printf("%d\n", P.length);
+	StdOut.printf("%.2e\n", R);
 	for (int i = 0; i < P.length; i++) {
-   	    System.Out.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+   	    StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
                   P[i].xxPos, P[i].yyPos, P[i].xxVel,
                   P[i].yyVel, P[i].mass, P[i].imgFileName);   
 }
