@@ -1,5 +1,5 @@
 public class Planet{
-    static final double G = 6.67e-11;
+    private  static final double G = 6.67e-11;
     public double xxPos;
     public double yyPos;
     public double xxVel;
@@ -37,7 +37,7 @@ public class Planet{
         return this.calcForceExertedBy(p) * (p.yyPos - this.yyPos) / this.calcDistance(p);
     }
     /** Compare two planet. */
-    public boolean equals(Planet p){
+    private boolean equals(Planet p){
 	boolean result = true;
 	if(this.xxPos != p.xxPos) { result = false;}
 	else if (this.yyPos != p.yyPos) { result = false;}
