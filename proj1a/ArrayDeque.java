@@ -1,38 +1,52 @@
 
 public class ArrayDeque<T> {
-    private T[] tArray;
+    private T[] arrayList;
     private int size;
+    private int capacity;
+    private int first;
+    private int last;
 
     /**  Creates an empty array deque. */
     public ArrayDeque() {
-        tArray = (T[]) new Object[100];
+        capacity = 100;
+        arrayList = (T[]) new Object[capacity];
         size = 0;
+        first = last = -1;
     }
     /** resize an Array by multiply a factor*/
-    private void resize(int configure) {
-        T[] newTArray = (T[]) new Object[configure];
-        System.arraycopy(newTArray, 0, tArray, 0, size);
-        tArray = newTArray;
+    private void resize(int capacity) {
+        T[] newTArray = (T[]) new Object[capacity];
+        if (first < last){
+            System.arraycopy(arrayList, 0, newTArray, first, size);
+            first = 0;
+            last = (size -1) % capacity;
+        } else {
+            System.arraycopy(arrayList, 0, newTArray, first, size - first);
+            System.arraycopy(arrayList, size - first, newTArray, 0, last + 1);
+            first = 0;
+            last = (size -1) % capacity;
+        }
+        arrayList = newTArray;
     }
     /** Adds an item of type T to the front of the deque. */
     public void addFirst(T item) {
-        if (this.size() + 1 > tArray.length) {
+        if (this.size() == arrayList.length) {
             this.resize(size * 2);
         }
-        int index = size;
-        while (index > 0) {
-            tArray[index] = tArray[index - 1];
-            index--;
+        if (size != 0) {
+            arrayList[(first - 1) % capacity] = item;
+        } else {
+            arrayList[0] = item;
+            first = last = 0;
         }
-        tArray[index] = item;
         size++;
     }
     /** Adds an item of type T to the back of the deque. */
     public void addLast(T item) {
-        if (this.size() + 1 > tArray.length) {
+        if (this.size() + 1 > arrayList.length) {
             this.resize(size * 2);
         }
-        tArray[size] = item;
+        arrayList[size] = item;
         size++;
     }
     /** Returns true if deque is empty, false otherwise. */
@@ -46,10 +60,13 @@ public class ArrayDeque<T> {
     /** Prints the items in the deque from first to last,
      *  separated by a space. */
     public void printDeque() {
-        int index = 0;
-        while (index < size) {
-            System.out.print(tArray[index] + " ");
+        int index = first;
+        while (index != last) {
+            System.out.print(arrayList[index] + " ");
             size++;
+        }
+        if (last != -1) {
+            System.out.print(arrayList[last]);
         }
     }
     /** Removes and returns the item at the front of the deque.
@@ -59,15 +76,13 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        int index = 0;
-        T temp = tArray[0];
-        while (index < this.size()) {
-            tArray[index] = tArray[index + 1];
-        }
-        tArray[size - 1] = null;
-        size--;
-        if (tArray.length / 4 > this.size()) {
-            resize(size);
+        T temp = arrayList[first];
+        if (size == 1) {
+            arrayList[first] = null;
+            first = last = -1;
+        } else {
+            arrayList[first] = null;
+            first = (first - 1) % capacity;
         }
         return temp;
     }
@@ -78,11 +93,13 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        T temp = tArray[size - 1];
-        tArray[size - 1] = null;
-        size--;
-        if (tArray.length / 4 > this.size() && tArray.length / 4 > 100) {
-            resize(size);
+        T temp = arrayList[last];
+        if (size == 1) {
+            arrayList[last] = null;
+            first = last = -1;
+        } else {
+            arrayList[last] = null;
+            last = (last + 1) % capacity;
         }
         return temp;
     }
@@ -93,7 +110,7 @@ public class ArrayDeque<T> {
         if (index >= size) {
             return null;
         } else {
-            return tArray[index];
+            return arrayList[(index + first) % capacity];
         }
     }
 }
