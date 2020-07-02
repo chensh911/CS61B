@@ -34,8 +34,8 @@ public class ArrayDeque<T> {
             first = 0;
             last = size - 1;
         } else {
-            System.arraycopy(arrayList, 0, newTArray, first, size - first);
-            System.arraycopy(arrayList, size - first, newTArray, 0, last + 1);
+            System.arraycopy(arrayList, first, newTArray, 0, size - first);
+            System.arraycopy(arrayList, 0, newTArray, size - first, last + 1);
             first = 0;
             last = size - 1;
         }
@@ -107,7 +107,7 @@ public class ArrayDeque<T> {
             first = forward(first);
         }
         size--;
-        if (capacity / 4 > size){
+        if (capacity / 4 > size) {
             resize(capacity / 4);
         }
         return temp;
@@ -128,7 +128,7 @@ public class ArrayDeque<T> {
             last = back(last);
         }
         size--;
-        if (capacity / 4 > size){
+        if (capacity / 4 > size) {
             resize(capacity / 4);
         }
         return temp;
