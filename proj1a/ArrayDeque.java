@@ -1,39 +1,39 @@
 
-public class ArrayDeque <T> {
-    private T[] TArray;
+public class ArrayDeque<T>{
+    private T[] tArray;
     private int size;
 
     /**  Creates an empty array deque. */
     public ArrayDeque(){
-        TArray = (T[]) new Object[100];
+        tArray = (T[]) new Object[100];
         size = 0;
     }
     /** resize an Array by multiply a factor*/
-    public void resize(int configure){
-        T[] NewTArray = (T[]) new Object[configure];
-        System.arraycopy(NewTArray,0,TArray,0,size);
-        TArray = NewTArray;
+    private void resize(int configure){
+        T[] newTArray = (T[]) new Object[configure];
+        System.arraycopy(newTArray,0, tArray,0,size);
+        tArray = newTArray;
     }
     /** Adds an item of type T to the front of the deque. */
     public void addFirst(T item){
-        if(this.size()+1 > TArray.length) {
+        if(this.size() + 1 > tArray.length){
             this.resize(size * 2);
         }
         int index = size;
         while (index > 0){
-            TArray[index] = TArray[index - 1];
-            index --;
+            tArray[index] = tArray[index - 1];
+            index--;
         }
-        TArray[index] = item;
-        size ++;
+        tArray[index] = item;
+        size++;
     }
     /** Adds an item of type T to the back of the deque. */
     public void addLast(T item){
-        if(this.size()+1 > TArray.length) {
+        if(this.size()+1 > tArray.length){
             this.resize(size * 2);
         }
-        TArray[size] = item;
-        size ++;
+        tArray[size] = item;
+        size++;
     }
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty(){
@@ -48,8 +48,8 @@ public class ArrayDeque <T> {
     public void printDeque(){
         int index = 0;
         while(index < size){
-            System.out.print(TArray[index] + " ");
-            size ++;
+            System.out.print(tArray[index] + " ");
+            size++;
         }
     }
     /** Removes and returns the item at the front of the deque.
@@ -58,13 +58,13 @@ public class ArrayDeque <T> {
         if(size == 0) return null;
 
         int index = 0;
-        T temp = TArray[0];
+        T temp = tArray[0];
         while(index < this.size()){
-            TArray[index] = TArray[index +1];
+            tArray[index] = tArray[index + 1];
         }
-        TArray[size - 1] = null;
+        tArray[size - 1] = null;
         size--;
-        if(TArray.length / 4 > this.size()){
+        if(tArray.length / 4 > this.size()){
             resize(size);
         }
         return temp;
@@ -74,10 +74,10 @@ public class ArrayDeque <T> {
     public T removeLast(){
         if(size == 0) return null;
 
-        T temp = TArray[size - 1];
-        TArray[size - 1] = null;
+        T temp = tArray[size - 1];
+        tArray[size - 1] = null;
         size--;
-        if(TArray.length / 4 > this.size()){
+        if(tArray.length / 4 > this.size()){
             resize(size);
         }
         return temp;
@@ -87,6 +87,6 @@ public class ArrayDeque <T> {
      * returns null. Must not alter the deque! */
     public T get(int index){
         if(index >= size) return null;
-        else return TArray[index];
+        else return tArray[index];
     }
 }
