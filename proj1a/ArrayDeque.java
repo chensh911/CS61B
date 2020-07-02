@@ -11,7 +11,7 @@ public class ArrayDeque<T> {
         return index;
     }
     private int back(int index) {
-        index = (index -1) % capacity;
+        index = (index - 1) % capacity;
         if (index < 0) {
             index += capacity;
         }
@@ -19,7 +19,7 @@ public class ArrayDeque<T> {
     }
     /**  Creates an empty array deque. */
     public ArrayDeque() {
-        capacity = 100;
+        capacity = 2;
         arrayList = (T[]) new Object[capacity];
         size = 0;
         first = last = -1;
@@ -137,10 +137,16 @@ public class ArrayDeque<T> {
             return arrayList[Math.abs((index + first) % capacity)];
         }
     }
-/** test */
+///** test */
 //    public static void main(String[] args) {
 //        ArrayDeque<Integer> a = new ArrayDeque<>();
 //        System.out.println(a.size());
+//        a.addFirst(-1);
+//        a.addFirst(-2);
+//        a.addFirst(-1);
+//        a.addFirst(-2);
+//        a.addFirst(-1);
+//        a.addFirst(-2);
 //        a.addFirst(-1);
 //        a.addFirst(-2);
 //        a.removeFirst();
