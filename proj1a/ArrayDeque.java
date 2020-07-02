@@ -27,7 +27,9 @@ public class ArrayDeque<T> {
     /** resize an Array by multiply a factor*/
     private void resize(int newCapacity) {
         T[] newTArray = (T[]) new Object[newCapacity];
-        if (first < last) {
+        if (first == last) {
+            newTArray[0] = arrayList[first];
+        } else if (first < last) {
             System.arraycopy(arrayList, 0, newTArray, first, size);
             first = 0;
             last = size - 1;
@@ -37,6 +39,7 @@ public class ArrayDeque<T> {
             first = 0;
             last = size - 1;
         }
+        capacity = newCapacity;
         arrayList = newTArray;
     }
     /** Adds an item of type T to the front of the deque. */
@@ -135,13 +138,16 @@ public class ArrayDeque<T> {
         }
     }
 /** test */
-    public static void main(String[] args) {
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        System.out.println(a.size());
-        a.addFirst(-1);
-        a.addFirst(1);
-        a.addFirst(-2);
-        System.out.println(a.size());
-        a.printDeque();
-    }
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> a = new ArrayDeque<>();
+//        System.out.println(a.size());
+//        a.addFirst(-1);
+//        a.addFirst(-2);
+//        a.removeFirst();
+//        a.removeFirst();
+//        System.out.println(a.isEmpty());
+//        a.addFirst(-1);
+//        System.out.println(a.size());
+//        a.printDeque();
+//    }
 }
