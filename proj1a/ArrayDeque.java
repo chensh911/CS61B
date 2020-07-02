@@ -7,15 +7,12 @@ public class ArrayDeque<T> {
     private int last;
 
     private int forward(int index) {
-        index++;
-        if (index > capacity) {
-            index -= capacity;
-        }
+        index = (index + 1) % capacity;
         return index;
     }
     private int back(int index) {
-        index--;
-        if (index < capacity) {
+        index = (index -1) % capacity;
+        if (index < 0) {
             index += capacity;
         }
         return index;
@@ -138,13 +135,13 @@ public class ArrayDeque<T> {
         }
     }
 /** test */
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> a = new ArrayDeque<>();
-//        System.out.println(a.size());
-//        a.addLast(-1);
-//        a.addFirst(1);
-//        a.addLast(-2);
-//        System.out.println(a.size());
-//        a.printDeque();
-//    }
+    public static void main(String[] args) {
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        System.out.println(a.size());
+        a.addFirst(-1);
+        a.addFirst(1);
+        a.addFirst(-2);
+        System.out.println(a.size());
+        a.printDeque();
+    }
 }
