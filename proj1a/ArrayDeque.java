@@ -144,15 +144,15 @@ public class ArrayDeque<T> {
             return arrayList[Math.abs((index + first) % capacity)];
         }
     }
-/** test */
-    public static void main(String[] args) {
-        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
-
-        ArrayDeque.addFirst(0);
-        ArrayDeque.get(0)      ;//==> 0
-        ArrayDeque.get(0)     ;// ==> 0
-        ArrayDeque.removeLast()  ;//    ==> 0
-        ArrayDeque.addLast(4);
-        ArrayDeque.removeLast();
-    }
+///** test */
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+//
+//        ArrayDeque.addFirst(0);
+//        ArrayDeque.get(0)      ;//==> 0
+//        ArrayDeque.get(0)     ;// ==> 0
+//        ArrayDeque.removeLast()  ;//    ==> 0
+//        ArrayDeque.addLast(4);
+//        ArrayDeque.removeLast();
+//    }
 }
