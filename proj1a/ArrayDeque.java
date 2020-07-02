@@ -11,7 +11,7 @@ public class ArrayDeque<T> {
     /** resize an Array by multiply a factor*/
     private void resize(int configure) {
         T[] newTArray = (T[]) new Object[configure];
-        System.arraycopy(newTArray,0, tArray,0,size);
+        System.arraycopy(newTArray, 0, tArray, 0, size);
         tArray = newTArray;
     }
     /** Adds an item of type T to the front of the deque. */
@@ -55,7 +55,9 @@ public class ArrayDeque<T> {
     /** Removes and returns the item at the front of the deque.
      * If no such item exists, returns null. */
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
 
         int index = 0;
         T temp = tArray[0];
@@ -72,7 +74,9 @@ public class ArrayDeque<T> {
     /** Removes and returns the item at the back of the deque.
      * If no such item exists, returns null. */
     public T removeLast() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
 
         T temp = tArray[size - 1];
         tArray[size - 1] = null;
@@ -86,7 +90,11 @@ public class ArrayDeque<T> {
      * 1 is the next item, and so forth. If no such item exists,
      * returns null. Must not alter the deque! */
     public T get(int index) {
-        if (index >= size) return null;
-        else return tArray[index];
+        if (index >= size) {
+            return null;
+        }
+        else {
+            return tArray[index];
+        }
     }
 }
