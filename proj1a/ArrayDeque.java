@@ -8,14 +8,14 @@ public class ArrayDeque<T> {
 
     private int forward(int index) {
         index++;
-        if (index > capacity){
+        if (index > capacity) {
             index -= capacity;
         }
         return index;
     }
     private int back(int index) {
         index--;
-        if (index < capacity){
+        if (index < capacity) {
             index += capacity;
         }
         return index;
@@ -81,13 +81,13 @@ public class ArrayDeque<T> {
     /** Prints the items in the deque from first to last,
      *  separated by a space. */
     public void printDeque() {
-        if (last == -1 ){
+        if (last == -1) {
             return;
         }
         int index = first;
         while (index != last) {
             System.out.print(arrayList[index] + " ");
-            index = (index + 1 ) % capacity;
+            index = (index + 1) % capacity;
         }
         System.out.print(arrayList[last]);
     }
