@@ -107,6 +107,9 @@ public class ArrayDeque<T> {
             first = forward(first);
         }
         size--;
+        if (capacity / 4 > size){
+            resize(capacity / 4);
+        }
         return temp;
     }
     /** Removes and returns the item at the back of the deque.
@@ -125,6 +128,9 @@ public class ArrayDeque<T> {
             last = back(last);
         }
         size--;
+        if (capacity / 4 > size){
+            resize(capacity / 4);
+        }
         return temp;
     }
     /** Gets the item at the given index, where 0 is the front,
@@ -140,20 +146,28 @@ public class ArrayDeque<T> {
 ///** test */
 //    public static void main(String[] args) {
 //        ArrayDeque<Integer> a = new ArrayDeque<>();
-//        System.out.println(a.size());
-//        a.addFirst(-1);
-//        a.addFirst(-2);
-//        a.addFirst(-1);
-//        a.addFirst(-2);
-//        a.addFirst(-1);
-//        a.addFirst(-2);
-//        a.addFirst(-1);
-//        a.addFirst(-2);
-//        a.removeFirst();
-//        a.removeFirst();
-//        System.out.println(a.isEmpty());
-//        a.addFirst(-1);
-//        System.out.println(a.size());
-//        a.printDeque();
+//        a.addFirst(0);
+//        System.out.println(a.get(0));      //==> 0
+//        a.removeFirst();//     ==> 0
+//        a.addFirst(3);
+//        a.addLast(4);
+//        a.removeLast();//      ==> 4
+//        a.removeFirst();//     ==> 3
+//        a.addLast(7);
+//        a.removeLast();   //   ==> 7
+//        a.addLast(9);
+//        a.removeLast();//      ==> 9
+//        a.addFirst(11);
+//        a.addFirst(12);
+//        a.addLast(13);
+//        System.out.println(a.get(1));    //  ==> 11
+//        a.removeLast();//      ==> 13
+//        a.removeFirst();//     ==> 12
+//        a.addFirst(17);
+//        a.addFirst(18);
+//        System.out.println(a.get(2));//      ==> 11
+//        a.addLast(20);
+//        a.addLast(21);
+//        System.out.println(a.get(0));
 //    }
 }
