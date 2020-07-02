@@ -14,17 +14,17 @@ public class ArrayDeque<T> {
         first = last = -1;
     }
     /** resize an Array by multiply a factor*/
-    private void resize(int capacity) {
-        T[] newTArray = (T[]) new Object[capacity];
-        if (first < last){
+    private void resize(int newCapacity) {
+        T[] newTArray = (T[]) new Object[newCapacity];
+        if (first < last) {
             System.arraycopy(arrayList, 0, newTArray, first, size);
             first = 0;
-            last = (size -1) % capacity;
+            last = (size - 1) % newCapacity;
         } else {
             System.arraycopy(arrayList, 0, newTArray, first, size - first);
             System.arraycopy(arrayList, size - first, newTArray, 0, last + 1);
             first = 0;
-            last = (size -1) % capacity;
+            last = (size - 1) % newCapacity;
         }
         arrayList = newTArray;
     }
@@ -84,6 +84,7 @@ public class ArrayDeque<T> {
             arrayList[first] = null;
             first = (first - 1) % capacity;
         }
+        size--;
         return temp;
     }
     /** Removes and returns the item at the back of the deque.
@@ -101,6 +102,7 @@ public class ArrayDeque<T> {
             arrayList[last] = null;
             last = (last + 1) % capacity;
         }
+        size--;
         return temp;
     }
     /** Gets the item at the given index, where 0 is the front,
