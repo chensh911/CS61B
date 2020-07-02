@@ -6,6 +6,20 @@ public class ArrayDeque<T> {
     private int first;
     private int last;
 
+    private int forward(int index) {
+        index++;
+        if (index > capacity){
+            index -= capacity;
+        }
+        return index;
+    }
+    private int back(int index) {
+        index--;
+        if (index < capacity){
+            index += capacity;
+        }
+        return index;
+    }
     /**  Creates an empty array deque. */
     public ArrayDeque() {
         capacity = 100;
@@ -19,12 +33,12 @@ public class ArrayDeque<T> {
         if (first < last) {
             System.arraycopy(arrayList, 0, newTArray, first, size);
             first = 0;
-            last = Math.abs((size - 1) % newCapacity);
+            last = size - 1;
         } else {
             System.arraycopy(arrayList, 0, newTArray, first, size - first);
             System.arraycopy(arrayList, size - first, newTArray, 0, last + 1);
             first = 0;
-            last = Math.abs((size - 1) % newCapacity);
+            last = size - 1;
         }
         arrayList = newTArray;
     }
@@ -34,7 +48,8 @@ public class ArrayDeque<T> {
             this.resize(size * 2);
         }
         if (size != 0) {
-            arrayList[Math.abs((first - 1) % capacity)] = item;
+            first = back(first);
+            arrayList[first] = item;
         } else {
             arrayList[0] = item;
             first = last = 0;
@@ -43,10 +58,16 @@ public class ArrayDeque<T> {
     }
     /** Adds an item of type T to the back of the deque. */
     public void addLast(T item) {
-        if (this.size() + 1 > arrayList.length) {
+        if (this.size() == arrayList.length) {
             this.resize(size * 2);
         }
-        arrayList[size] = item;
+        if (size != 0) {
+            last = forward(last);
+            arrayList[last] = item;
+        } else {
+            arrayList[0] = item;
+            first = last = 0;
+        }
         size++;
     }
     /** Returns true if deque is empty, false otherwise. */
@@ -60,14 +81,15 @@ public class ArrayDeque<T> {
     /** Prints the items in the deque from first to last,
      *  separated by a space. */
     public void printDeque() {
+        if (last == -1 ){
+            return;
+        }
         int index = first;
         while (index != last) {
             System.out.print(arrayList[index] + " ");
-            size++;
+            index = (index + 1 ) % capacity;
         }
-        if (last != -1) {
-            System.out.print(arrayList[last]);
-        }
+        System.out.print(arrayList[last]);
     }
     /** Removes and returns the item at the front of the deque.
      * If no such item exists, returns null. */
@@ -82,7 +104,7 @@ public class ArrayDeque<T> {
             first = last = -1;
         } else {
             arrayList[first] = null;
-            first = Math.abs((first - 1) % capacity);
+            first = forward(first);
         }
         size--;
         return temp;
@@ -100,7 +122,7 @@ public class ArrayDeque<T> {
             first = last = -1;
         } else {
             arrayList[last] = null;
-            last = Math.abs((last + 1) % capacity);
+            last = back(last);
         }
         size--;
         return temp;
@@ -115,4 +137,14 @@ public class ArrayDeque<T> {
             return arrayList[Math.abs((index + first) % capacity)];
         }
     }
+/** test */
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> a = new ArrayDeque<>();
+//        System.out.println(a.size());
+//        a.addLast(-1);
+//        a.addFirst(1);
+//        a.addLast(-2);
+//        System.out.println(a.size());
+//        a.printDeque();
+//    }
 }
