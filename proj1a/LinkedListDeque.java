@@ -1,5 +1,5 @@
 public class LinkedListDeque<T> {
-    private class TNode{
+    private class TNode {
         private T item;
         private TNode pre;
         private TNode next;
@@ -41,11 +41,7 @@ public class LinkedListDeque<T> {
     }
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (size == 0);
     }
     /** Returns the number of items in the deque. */
     public int size() {
@@ -103,7 +99,7 @@ public class LinkedListDeque<T> {
 
         int nowIndex = 0;
         TNode ptr = sentinel.next;
-        while(nowIndex != index) {
+        while (nowIndex != index) {
             nowIndex++;
             ptr = ptr.next;
         }

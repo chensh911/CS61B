@@ -81,7 +81,7 @@ public class ArrayDeque<T> {
         T temp = tArray[size - 1];
         tArray[size - 1] = null;
         size--;
-        if (tArray.length / 4 > this.size()) {
+        if (tArray.length / 4 > this.size() && tArray.length / 4 > 100) {
             resize(size);
         }
         return temp;
@@ -92,8 +92,7 @@ public class ArrayDeque<T> {
     public T get(int index) {
         if (index >= size) {
             return null;
-        }
-        else {
+        } else {
             return tArray[index];
         }
     }
