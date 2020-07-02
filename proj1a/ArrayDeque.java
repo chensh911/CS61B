@@ -29,8 +29,9 @@ public class ArrayDeque<T> {
         T[] newTArray = (T[]) new Object[newCapacity];
         if (first == last) {
             newTArray[0] = arrayList[first];
+            first = last = 0;
         } else if (first < last) {
-            System.arraycopy(arrayList, 0, newTArray, first, size);
+            System.arraycopy(arrayList, first, newTArray, 0, size);
             first = 0;
             last = size - 1;
         } else {
@@ -145,29 +146,29 @@ public class ArrayDeque<T> {
     }
 ///** test */
 //    public static void main(String[] args) {
-//        ArrayDeque<Integer> a = new ArrayDeque<>();
-//        a.addFirst(0);
-//        System.out.println(a.get(0));      //==> 0
-//        a.removeFirst();//     ==> 0
-//        a.addFirst(3);
-//        a.addLast(4);
-//        a.removeLast();//      ==> 4
-//        a.removeFirst();//     ==> 3
-//        a.addLast(7);
-//        a.removeLast();   //   ==> 7
-//        a.addLast(9);
-//        a.removeLast();//      ==> 9
-//        a.addFirst(11);
-//        a.addFirst(12);
-//        a.addLast(13);
-//        System.out.println(a.get(1));    //  ==> 11
-//        a.removeLast();//      ==> 13
-//        a.removeFirst();//     ==> 12
-//        a.addFirst(17);
-//        a.addFirst(18);
-//        System.out.println(a.get(2));//      ==> 11
-//        a.addLast(20);
-//        a.addLast(21);
-//        System.out.println(a.get(0));
+//        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+//        ArrayDeque.addFirst(0);
+//        ArrayDeque.removeFirst();//     ==> 0
+//        ArrayDeque.addLast(2);
+//        ArrayDeque.get(0);//      ==> 2
+//        ArrayDeque.addFirst(4);
+//        ArrayDeque.get(0);//      ==> 4
+//        ArrayDeque.addFirst(6);
+//        ArrayDeque.removeLast() ;//     ==> 2
+//        ArrayDeque.get(1)     ;// ==> 4
+//        ArrayDeque.addLast(9);
+//        ArrayDeque.addFirst(10);
+//        ArrayDeque.addLast(11);
+//        ArrayDeque.get(3)     ;// ==> 9
+//        ArrayDeque.get(4)      ;//==> 11
+//        ArrayDeque.removeFirst()  ;//   ==> 10
+//        ArrayDeque.removeLast()    ;//  ==> 11
+//        ArrayDeque.get(1)    ;//  ==> 4
+//        ArrayDeque.removeLast() ;//     ==> 9
+//        ArrayDeque.addFirst(18);
+//        ArrayDeque.removeFirst()    ;// ==> 18
+//        ArrayDeque.removeLast()     ;// ==> 4
+//        ArrayDeque.addFirst(21);
+//        ArrayDeque.get(1)     ;// ==> null
 //    }
 }
