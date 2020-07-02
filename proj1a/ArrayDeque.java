@@ -1,6 +1,3 @@
-import org.omg.CORBA.Object;
-
-import java.util.Objects;
 
 public class ArrayDeque <T> {
     private T[] TArray;
@@ -8,10 +5,10 @@ public class ArrayDeque <T> {
 
     /**  Creates an empty array deque. */
     public ArrayDeque(){
-        TArray = (T[])new Object[100];
+        TArray = (T[]) new Object[100];
         size = 0;
     }
-    /** resize an Arrary by multiply a factor*/
+    /** resize an Array by multiply a factor*/
     public void resize(int configure){
         T[] NewTArray = (T[]) new Object[configure];
         System.arraycopy(NewTArray,0,TArray,0,size);

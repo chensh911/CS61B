@@ -3,7 +3,7 @@ public class LinkedListDeque <T> {
         private T item;
         private TNode pre;
         private TNode next;
-        public TNode(T x, TNode p, TNode n) {
+        private TNode(T x, TNode p, TNode n) {
             item = x;
             pre = p;
             next = n;
@@ -14,8 +14,8 @@ public class LinkedListDeque <T> {
             next = this;
         }
     }
-    public TNode sentinel;
-    public int size;
+    private TNode sentinel;
+    private int size;
 
     /** Creates an empty linked list deque. */
     public LinkedListDeque(){
@@ -98,7 +98,7 @@ public class LinkedListDeque <T> {
         return ptr.item;
     }
     /** Same as get, but uses recursion. */
-    public T getRecursiveMock(int index, TNode node){
+    private T getRecursiveMock(int index, TNode node){
         if (index == 0){
             return node.item;
         }else{
