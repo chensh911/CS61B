@@ -35,8 +35,8 @@ public class ArrayDeque<T> {
             first = 0;
             last = size - 1;
         } else if (!isEmpty()) {
-            System.arraycopy(arrayList, first, newTArray, 0, size - first);
-            System.arraycopy(arrayList, 0, newTArray, size - first, last + 1);
+            System.arraycopy(arrayList, first, newTArray, 0, capacity - first);
+            System.arraycopy(arrayList, 0, newTArray, capacity - first, last + 1);
             first = 0;
             last = size - 1;
         }
@@ -144,20 +144,15 @@ public class ArrayDeque<T> {
             return arrayList[Math.abs((index + first) % capacity)];
         }
     }
-///** test */
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
-//        ArrayDeque.addLast(0);
-//        ArrayDeque.addFirst(1);
-//        ArrayDeque.removeFirst()    ;// ==> 1
-//        ArrayDeque.addFirst(3);
-//        ArrayDeque.get(0)     ;// ==> 3
-//        ArrayDeque.addLast(5);
-//        ArrayDeque.removeLast()    ;//  ==> 5
-//        ArrayDeque.removeFirst()    ;// ==> 3
-//        ArrayDeque.addLast(8);
-//        ArrayDeque.removeLast()   ;//   ==> 8
-//        ArrayDeque.removeLast();
-//        System.out.println(ArrayDeque.isEmpty());
-//    }
+/** test */
+    public static void main(String[] args) {
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+
+        ArrayDeque.addFirst(0);
+        ArrayDeque.get(0)      ;//==> 0
+        ArrayDeque.get(0)     ;// ==> 0
+        ArrayDeque.removeLast()  ;//    ==> 0
+        ArrayDeque.addLast(4);
+        ArrayDeque.removeLast();
+    }
 }
