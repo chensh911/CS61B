@@ -1,14 +1,14 @@
-public class LinkedListDeque <T> {
-    private class TNode {
+public class LinkedListDeque<T>{
+    private class TNode{
         private T item;
         private TNode pre;
         private TNode next;
-        private TNode(T x, TNode p, TNode n) {
+        private TNode(T x, TNode p, TNode n){
             item = x;
             pre = p;
             next = n;
         }
-        public TNode() {
+        public TNode(){
             item = null;
             pre = this;
             next = this;
@@ -43,7 +43,7 @@ public class LinkedListDeque <T> {
     public boolean isEmpty(){
         if(size == 0){
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -59,7 +59,7 @@ public class LinkedListDeque <T> {
 
         TNode last = sentinel.pre;
         TNode ptr = sentinel.next;
-        while (ptr != last){
+        while(ptr != last){
             System.out.print(ptr.item + " ");
             ptr = ptr.next;
         }
@@ -113,7 +113,7 @@ public class LinkedListDeque <T> {
     private T getRecursiveMock(int index, TNode node){
         if (index == 0){
             return node.item;
-        }else {
+        } else {
             return getRecursiveMock(index - 1, node.next);
         }
     }
