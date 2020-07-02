@@ -19,12 +19,12 @@ public class ArrayDeque<T> {
         if (first < last) {
             System.arraycopy(arrayList, 0, newTArray, first, size);
             first = 0;
-            last = (size - 1) % newCapacity;
+            last = Math.abs((size - 1) % newCapacity);
         } else {
             System.arraycopy(arrayList, 0, newTArray, first, size - first);
             System.arraycopy(arrayList, size - first, newTArray, 0, last + 1);
             first = 0;
-            last = (size - 1) % newCapacity;
+            last = Math.abs((size - 1) % newCapacity);
         }
         arrayList = newTArray;
     }
@@ -34,7 +34,7 @@ public class ArrayDeque<T> {
             this.resize(size * 2);
         }
         if (size != 0) {
-            arrayList[(first - 1) % capacity] = item;
+            arrayList[Math.abs((first - 1) % capacity)] = item;
         } else {
             arrayList[0] = item;
             first = last = 0;
@@ -82,7 +82,7 @@ public class ArrayDeque<T> {
             first = last = -1;
         } else {
             arrayList[first] = null;
-            first = (first - 1) % capacity;
+            first = Math.abs((first - 1) % capacity);
         }
         size--;
         return temp;
@@ -100,7 +100,7 @@ public class ArrayDeque<T> {
             first = last = -1;
         } else {
             arrayList[last] = null;
-            last = (last + 1) % capacity;
+            last = Math.abs((last + 1) % capacity);
         }
         size--;
         return temp;
@@ -112,7 +112,7 @@ public class ArrayDeque<T> {
         if (index >= size) {
             return null;
         } else {
-            return arrayList[(index + first) % capacity];
+            return arrayList[Math.abs((index + first) % capacity)];
         }
     }
 }
