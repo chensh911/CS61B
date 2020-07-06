@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 public class TestOffByN {
-    @Test
+    @Test(timeout = 1000)
     public void testEqualChars() {
         OffByN offBy5 = new OffByN(5);
         assertTrue(offBy5.equalChars('a', 'f'));  // true
