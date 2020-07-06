@@ -22,13 +22,15 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("noon"));
         assertTrue(palindrome.isPalindrome("a"));
         assertTrue(palindrome.isPalindrome("did"));
-        assertTrue(palindrome.isPalindrome(""));
+        assertFalse(palindrome.isPalindrome(""));
         CharacterComparator offByOne = new OffByOne();
         assertTrue(palindrome.isPalindrome("cad", offByOne));
         assertFalse(palindrome.isPalindrome("bob", offByOne));
         assertFalse(palindrome.isPalindrome("noon", offByOne));
         assertTrue(palindrome.isPalindrome("a", offByOne));
         assertTrue(palindrome.isPalindrome("ccdd", offByOne));
-        assertTrue(palindrome.isPalindrome("", offByOne));
+        assertFalse(palindrome.isPalindrome("", offByOne));
+        assertTrue(palindrome.isPalindrome("AABB", offByOne));
+        assertTrue(palindrome.isPalindrome("%7", offByOne));
     }
 }
