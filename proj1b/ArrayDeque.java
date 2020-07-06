@@ -1,5 +1,5 @@
 
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T> {
     private T[] arrayList;
     private int size;
     private int capacity;

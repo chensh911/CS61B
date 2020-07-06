@@ -9,10 +9,10 @@ public class Palindrome {
     public boolean isPalindrome(String word) {
         Palindrome palindrome = new Palindrome();
         Deque<Character> d = palindrome.wordToDeque(word);
-        while (d.size() != 0 &&d.size() != 1) {
+        while (d.size() != 0 && d.size() != 1) {
             Character a = d.removeFirst();
             Character b = d.removeLast();
-            if (!a.equals(b)){
+            if (!a.equals(b)) {
                 return false;
             }
         }
