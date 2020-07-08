@@ -31,7 +31,7 @@ public class TestArrayDequeGold {
                     assertEquals("removeLast(): " + expected + "\n", solution.get(solution.size() - 1), student.get(solution.size() - 1));
                 }
                 assertEquals("removeLast(): " + expected + "\n", solution.size(), student.size());
-                System.out.println("removeLast(): " + expected);
+                System.out.println("removeLast()");
             } else {
                 //removeFirst
                 Integer expected = solution.removeFirst();
@@ -41,7 +41,7 @@ public class TestArrayDequeGold {
                 if (solution.size() != 0 && student.size() != 0) {
                     assertEquals("removeFirst(): " + expected + "\n", solution.get(0), student.get(0));
                 }
-                System.out.println("removeFirst(): " + expected);
+                System.out.println("removeFirst()");
             }
         }
     }
