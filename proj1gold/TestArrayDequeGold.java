@@ -7,22 +7,22 @@ public class TestArrayDequeGold {
         StudentArrayDeque<Integer> student = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> solution = new ArrayDequeSolution<>();
         for (int i = 0; i < 1000; i++) {
-            double NumberFromZeroToFour = StdRandom.uniform(4);
-            if (NumberFromZeroToFour < 1) {
+            double numberFromZeroToFour = StdRandom.uniform(4);
+            if (numberFromZeroToFour < 1) {
                 //addLast
                 Integer NumberToAdd = (Integer) StdRandom.uniform(100);
                 student.addLast(NumberToAdd);
                 solution.addLast(NumberToAdd);
                 assertEquals("addLast(" + NumberToAdd + ")\n",solution.get(solution.size() - 1), student.get(solution.size() - 1));
                 System.out.println("addLast(" + NumberToAdd + ")");
-            } else if (NumberFromZeroToFour < 2) {
+            } else if (numberFromZeroToFour < 2) {
                 //addFirst
                 Integer NumberToAdd = (Integer) StdRandom.uniform(100);
                 student.addFirst(NumberToAdd);
                 solution.addFirst(NumberToAdd);
                 assertEquals("addFirst(" + NumberToAdd + ")\n",solution.get(0), student.get(0));
                 System.out.println("addFirst(" + NumberToAdd + ")");
-            } else if (NumberFromZeroToFour < 3) {
+            } else if (numberFromZeroToFour < 3) {
                 //removeLast
                 Integer expected = solution.removeLast();
                 Integer actual = student.removeLast();
