@@ -26,20 +26,20 @@ public class TestArrayDequeGold {
                 //removeLast
                 Integer expected = solution.removeLast();
                 Integer actual = student.removeLast();
-                assertEquals("removeLast(): " + expected + "\n",expected, actual);
+                assertEquals("removeLast()",expected, actual);
                 if (solution.size() != 0 && student.size() != 0) {
-                    assertEquals("removeLast(): " + expected + "\n", solution.get(solution.size() - 1), student.get(solution.size() - 1));
+                    assertEquals("removeLast()\n", solution.get(solution.size() - 1), student.get(solution.size() - 1));
                 }
-                assertEquals("removeLast(): " + expected + "\n", solution.size(), student.size());
+                assertEquals("removeLast()", solution.size(), student.size());
                 System.out.println("removeLast()");
             } else {
                 //removeFirst
                 Integer expected = solution.removeFirst();
                 Integer actual = student.removeFirst();
-                assertEquals("removeFirst(): " + expected + "\n", expected, actual);
-                assertEquals("removeFirst(): " + expected + "\n", solution.size(), student.size());
+                assertEquals("removeFirst()\n", expected, actual);
+                assertEquals("removeFirst()\n", solution.size(), student.size());
                 if (solution.size() != 0 && student.size() != 0) {
-                    assertEquals("removeFirst(): " + expected + "\n", solution.get(0), student.get(0));
+                    assertEquals("removeFirst()\n", solution.get(0), student.get(0));
                 }
                 System.out.println("removeFirst()");
             }
