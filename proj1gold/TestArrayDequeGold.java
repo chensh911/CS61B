@@ -6,7 +6,7 @@ public class TestArrayDequeGold {
     public void testTask() {
         StudentArrayDeque<Integer> student = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> solution = new ArrayDequeSolution<>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 1000; i++) {
             double NumberFromZeroToFour = StdRandom.uniform(4);
             if (NumberFromZeroToFour < 1) {
                 //addLast
