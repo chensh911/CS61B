@@ -1,10 +1,7 @@
 import edu.princeton.cs.algs4.StdAudio;
-import synthesizer.BoundedQueue;
 import synthesizer.GuitarString;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
 public class GuitarHero {
     private static String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
@@ -23,7 +20,6 @@ public class GuitarHero {
             }
             //compute superposition
             double sample = 0;
-            Iterator<GuitarString> seer = new sgs.iterator();
             for (GuitarString s: sgs) {
                 sample += s.sample();
             }
