@@ -2,6 +2,11 @@ package byog.Core;
 
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
+import byog.TileEngine.Tileset;
+import edu.princeton.cs.algs4.StdDraw;
+
+import java.awt.*;
+import java.util.Random;
 
 public class Game {
     TERenderer ter = new TERenderer();
@@ -32,7 +37,21 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-        TETile[][] finalWorldFrame = null;
-        return finalWorldFrame;
+        //initialize
+        long seed = Long.parseLong(input.replaceAll("[^0-9]", ""));
+        Random RANDOM = new Random(seed);
+        TETile[][] world = new TETile[WIDTH][HEIGHT];
+        for (int i = 0; i < WIDTH; i +=1 ) {
+            for (int j = 0; j < HEIGHT; j += 1) {
+                world[i][j] = Tileset.NOTHING;
+            }
+        }
+        // creat what we need
+        creat(world);
+        return world;
     }
+    public static void creat(TETile[][] world) {
+
+    }
+
 }
