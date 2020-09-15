@@ -37,10 +37,10 @@ public class Percolation {
         numberOpen += 1;
         if (row == 0) {
             /* If is on the top */
-            uf.union(convertXYToIndex(row, col), n);
+            uf.union(convertXYToIndex(row, col), n*n);
         } else if (row == n - 1) {
             /* If is on the bottom */
-            uf.union(convertXYToIndex(row, col), n + 1);
+            uf.union(convertXYToIndex(row, col), n*n + 1);
         }
         /* connect up */
         if (row - 1 >= 0) {
@@ -81,7 +81,7 @@ public class Percolation {
         if (row < 0 || row >= n || col < 0 || col >= n) {
             throw new java.lang.IndexOutOfBoundsException();
         }
-        return uf.connected(n, convertXYToIndex(row, col));
+        return uf.connected(n*n, convertXYToIndex(row, col));
     }
 
     /** number of open sites. */
@@ -91,7 +91,7 @@ public class Percolation {
 
     /** does the system percolate? */
     public boolean percolates() {
-        return uf.connected(n, n + 1);
+        return uf.connected(n*n, n*n + 1);
     }
 
     /** use for unit testing (not required) */
