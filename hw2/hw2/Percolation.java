@@ -31,6 +31,9 @@ public class Percolation {
     /** Open the site (row, col) if it is not open already. */
     public void open(int row, int col) {
         /* special cases. */
+        if (isOpen(row, col)) {
+            return;
+        }
         if (row < 0 || row >= n || col < 0 || col >= n) {
             throw new java.lang.IndexOutOfBoundsException();
         }
@@ -38,7 +41,7 @@ public class Percolation {
         numberOpen += 1;
         if (row == 0) {
             /* If is on the top */
-            uf.union(convertXYToIndex(row, col), n*n);
+            uf.union(convertXYToIndex(row, col), n * n);
         }
         /* connect up */
         if (row - 1 >= 0) {
