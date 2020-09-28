@@ -22,7 +22,7 @@ public class Solver {
                 this.movements = 0;
             } else {
                 this.movements = p.movements + 1;
-                this.priority = p.movements + this.distance;
+                this.priority = this.movements + this.distance;
             }
         }
     }
