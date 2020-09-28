@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class Solver {
     private static class SearchNode {
-        WorldState world;
-        int movements;
-        int priority;
-        int distance;
-        SearchNode parent;
+        private WorldState world;
+        private int movements;
+        private int priority;
+        private int distance;
+        private SearchNode parent;
 
-        private SearchNode (WorldState w, SearchNode p) {
+        private SearchNode(WorldState w, SearchNode p) {
             this.world = w;
             this.parent = p;
             this.distance = w.estimatedDistanceToGoal();
@@ -27,14 +27,14 @@ public class Solver {
         }
     }
 
-    private static class SearchNodeComparator implements Comparator <SearchNode> {
+    private static class SearchNodeComparator implements Comparator<SearchNode> {
         @Override
         public int compare(SearchNode o1, SearchNode o2) {
             return o1.priority - o2.priority;
         }
     }
 
-    Stack<WorldState> Path = new Stack<>();
+    private Stack<WorldState> path = new Stack<>();
     /** Constructor which solves the puzzle, computing
      everything necessary for moves() and solution() to
      not have to solve the problem again. Solves the
@@ -52,7 +52,7 @@ public class Solver {
         }
 
         while (node != null) {
-            Path.push(node.world);
+            path.push(node.world);
             node = node.parent;
         }
     }
@@ -60,15 +60,15 @@ public class Solver {
     /** Returns the minimum number of moves to solve the puzzle starting
      at the initial WorldState. */
     public int moves() {
-        return Path.size() - 1;
+        return path.size() - 1;
     }
 
     /**  Returns a sequence of WorldStates from the initial WorldState
      to the solution. */
     public Iterable<WorldState> solution() {
         ArrayList<WorldState> ret = new ArrayList<>();
-        while (Path.size() != 0) {
-            ret.add(Path.pop());
+        while (path.size() != 0) {
+            ret.add(path.pop());
         }
         return ret;
     }

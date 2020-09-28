@@ -119,16 +119,18 @@ public class Board implements WorldState {
     /** Returns true if this board's tile values are the same
      position as y's. */
     public boolean equals(Object y) {
-        if (this.getClass() != y.getClass()) {
+        if (y == null) {
+            return false;
+        }else if (this.getClass() != y.getClass()) {
             return false;
         } else if (this == y) {
             return true;
-        } else if (this.N != ((Board)y).N) {
+        } else if (this.N != ((Board) y).N) {
             return false;
         } else {
             for (int i = 0; i < N; i += 1) {
                 for (int j = 0; j < N; j += 1) {
-                    if (this.tile[i][j] != ((Board)y).tile[i][j]) {
+                    if (this.tile[i][j] != ((Board) y).tile[i][j]) {
                         return false;
                     }
                 }
@@ -141,10 +143,10 @@ public class Board implements WorldState {
       * Uncomment this method. */
     public String toString() {
         StringBuilder s = new StringBuilder();
-        int N = size();
-        s.append(N + "\n");
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        int n = size();
+        s.append(n + "\n");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 s.append(String.format("%2d ", tileAt(i, j)));
             }
             s.append("\n");
