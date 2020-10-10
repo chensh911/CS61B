@@ -42,10 +42,59 @@ public class Rasterer {
      *                    forget to set this to true on success! <br>
      */
     public Map<String, Object> getMapRaster(Map<String, Double> params) {
-        // System.out.println(params);
+        //System.out.println(params);
+
+        // get all parameters
+        Double lrlon = params.get("lrlon");
+        Double ullon = params.get("ullon");
+        Double w = params.get("w");
+        Double h = params.get("h");
+        Double ullat = params.get("ullat");
+        Double lrlat = params.get("lrlat");
+
+        Double LonDPP = (ullon - lrlon) / w;
+        String[][] render_grid;
+        Double raster_ul_lon, raster_ul_lat, raster_lr_lon, raster_lr_lat;
+        Integer depth;
+        boolean query_success = true;
+            Double first_depth = (MapServer.ROOT_ULLON - MapServer.ROOT_LRLON) / MapServer.TILE_SIZE;
+            depth = (int) Math.ceil(Math.log(first_depth / LonDPP) / Math.log(2));
+        if (depth > 7) {
+            depth = 7;
+        }
+
+        //prepare
+        double grid_width = (MapServer.ROOT_LRLON - MapServer.ROOT_ULLON) / Math.pow(2, depth);
+        double grid_height = (MapServer.ROOT_ULLAT - MapServer.ROOT_LRLAT) / Math.pow(2, depth);
+        int x_start = (int) Math.floor((ullon - MapServer.ROOT_ULLON) / grid_width);
+        int y_start = (int) Math.floor((MapServer.ROOT_ULLAT - ullat) / grid_height);
+        int x_end = (int) Math.pow(2, depth) - 1 - (int) Math.floor((MapServer.ROOT_LRLON - lrlon) / grid_width);
+        int y_end = (int) Math.pow(2, depth) - 1 - (int) Math.floor((lrlat - MapServer.ROOT_LRLAT) / grid_height);
+
+        // calculate all the items
+        int x_num = x_end - x_start + 1;
+        int y_num = y_end - y_start + 1;
+        render_grid = new String[y_num][x_num];
+        for (int i = 0; i < y_num; i += 1) {
+            for (int j = 0; j < x_num; j += 1) {
+                render_grid[i][j] = "d" + depth + "_x" + (x_start + j) + "_y" + (y_start + i) + ".png";
+            }
+        }
+        raster_ul_lat = MapServer.ROOT_ULLAT - y_start * grid_height;
+        raster_lr_lat = MapServer.ROOT_ULLAT - (y_end + 1) * grid_height;
+        raster_ul_lon = MapServer.ROOT_ULLON + x_start * grid_width;
+        raster_lr_lon = MapServer.ROOT_ULLON + (x_end + 1) * grid_width;
+
+        // add all the item
         Map<String, Object> results = new HashMap<>();
-        System.out.println("Since you haven't implemented getMapRaster, nothing is displayed in "
-                           + "your browser.");
+        results.put("render_grid", render_grid);
+        results.put("raster_ul_lon", raster_ul_lon);
+        results.put("raster_ul_lat", raster_ul_lat);
+        results.put("raster_lr_lon", raster_lr_lon);
+        results.put("raster_lr_lat", raster_lr_lat);
+        results.put("depth", depth);
+        results.put("query_success", query_success);
+
         return results;
     }
 
