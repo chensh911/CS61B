@@ -69,12 +69,16 @@ public class MergeSort {
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
         Queue<Queue<Item>> fringe = makeSingleItemQueues(items);
-        while (fringe.size() != 1) {
+        while (fringe.size() > 1) {
             Queue<Item> q1 = fringe.dequeue();
             Queue<Item> q2 = fringe.dequeue();
             fringe.enqueue(mergeSortedQueues(q1, q2));
         }
-        items = fringe.dequeue();
+        if (fringe.size() == 1) {
+            items = fringe.dequeue();
+        } else {
+            items = new Queue<Item>();
+        }
         return items;
     }
 
