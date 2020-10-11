@@ -16,8 +16,25 @@ public class RadixSort {
      * @return String[] the sorted array
      */
     public static String[] sort(String[] asciis) {
-        // TODO: Implement LSD Sort
-        return null;
+        int max = 0;
+        for (String i : asciis) {
+            max = max < i.length() ? i.length() : max;
+        }
+        String[] ret = new String[asciis.length];
+        System.arraycopy(asciis, 0, ret, 0, asciis.length);
+        for (int i = 0; i < max; i += 1) {
+            sortHelperLSD(ret, max - i - 1);
+        }
+        return ret;
+    }
+
+    /** get the Integer number at a given index */
+    private static int getChar(String s, int index) {
+        if (s.length() <= index) {
+            return -1;
+        } else {
+            return (int) s.charAt(index);
+        }
     }
 
     /**
@@ -27,7 +44,23 @@ public class RadixSort {
      * @param index The position to sort the Strings on.
      */
     private static void sortHelperLSD(String[] asciis, int index) {
-        // Optional LSD helper method for required LSD radix sort
+        int[] count = new int [257];
+        for (String i : asciis) {
+            int charNum = getChar(i, index);
+            count[charNum + 1] += 1;
+        }
+        int[] start = new int [257];
+        start[0] = 0;
+        for (int i = 1; i < 257; i += 1) {
+            start[i] = start[i - 1] + count[i - 1];
+        }
+        String[] sorted = new String[asciis.length];
+        for (int i = 0; i < sorted.length; i += 1) {
+            int charNum = getChar(asciis[i], index);
+            sorted[start[charNum + 1]] = asciis[i];
+            start[charNum + 1] += 1;
+        }
+        System.arraycopy(sorted, 0, asciis, 0, asciis.length);
         return;
     }
 
