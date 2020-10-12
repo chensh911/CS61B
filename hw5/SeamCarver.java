@@ -9,7 +9,7 @@ public class SeamCarver {
 
     /** current picture.*/
     public Picture picture() {
-        return picture;
+        return new Picture(this.picture);
     }
 
     /** width of current picture */
@@ -64,13 +64,13 @@ public class SeamCarver {
                 if (j == 0) {
                     up = Double.MAX_VALUE;
                 } else {
-                    up = M[i - 1][j - 1];
+                    up = M[j - 1][i - 1];
                 }
-                left = M[i - 1][j];
+                left = M[j][i - 1];
                 if (j == height() - 1) {
                     down = Double.MAX_VALUE;
                 } else {
-                    down = M[i - 1][j + 1];
+                    down = M[j + 1][i - 1];
                 }
                 M[j][i] = e[j][i] + Math.min(Math.min(down, left), up);
             }
