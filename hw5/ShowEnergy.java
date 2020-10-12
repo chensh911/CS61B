@@ -9,7 +9,6 @@
  *  % java ShowEnergy HJoceanSmall.png
  *
  ******************************************************************************/
-
 import edu.princeton.cs.algs4.Picture;
 import edu.princeton.cs.algs4.StdOut;
 

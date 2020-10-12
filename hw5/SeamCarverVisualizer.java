@@ -12,7 +12,6 @@
  *  *
  *  ******************************************************************************/
 
-import edu.princeton.cs.algs4.Picture;
 import java.awt.Color;
 import java.awt.FileDialog;
 import java.awt.Toolkit;
@@ -31,6 +30,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import edu.princeton.cs.algs4.Picture;
 
 public class SeamCarverVisualizer {
     JFrame frame;
