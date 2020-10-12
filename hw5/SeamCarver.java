@@ -31,10 +31,10 @@ public class SeamCarver {
         int rightx = (x + 1) % width();
         int upy = (y - 1 + height()) % height();
         int downy = (y + 1) % height();
-        Color left = new Color(picture.getRGB(leftx, y), true);
-        Color right = new Color(picture.getRGB(rightx, y), true);
-        Color down = new Color(picture.getRGB(x, downy), true);
-        Color up = new Color(picture.getRGB(x, upy), true);
+        Color left = picture.get(leftx, y);
+        Color right = picture.get(rightx, y);
+        Color down = picture.get(x, downy);
+        Color up = picture.get(x, upy);
         double rx = Math.pow(left.getRed() - right.getRed(), 2);
         double gx = Math.pow(left.getGreen() - right.getGreen(), 2);
         double bx = Math.pow(left.getBlue() - right.getBlue(), 2);
