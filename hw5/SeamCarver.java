@@ -143,7 +143,7 @@ public class SeamCarver {
             }
         }
         int[] ret = new int[height()];
-        int minIndex = -1;
+        int minIndex = 0;
         double minValue = Double.MAX_VALUE;
         for (int i = 0; i < width(); i += 1) {
             if (M[height() - 1][i] < minValue) {
