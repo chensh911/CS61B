@@ -4,7 +4,7 @@ import java.awt.Color;
 public class SeamCarver {
     private Picture picture;
     public SeamCarver(Picture picture) {
-        this.picture = picture;
+        this.picture = new Picture(picture);
     }
 
     /** current picture.*/
@@ -46,6 +46,7 @@ public class SeamCarver {
 
     /** sequence of indices for horizontal seam */
     public int[] findHorizontalSeam() {
+        int[][] path = new int[height()][width()];
         double[][] e = new double[height()][width()];
         double[][] M = new double[height()][width()];
         // set e
@@ -73,6 +74,13 @@ public class SeamCarver {
                     down = M[j + 1][i - 1];
                 }
                 M[j][i] = e[j][i] + Math.min(Math.min(down, left), up);
+                if (up < Math.min(down, left)) {
+                    path[j][i] = j - 1;
+                } else if (down < left) {
+                    path[j][i] = j + 1;
+                } else {
+                    path[j][i] = j;
+                }
             }
         }
         int[] ret = new int[width()];
@@ -84,35 +92,16 @@ public class SeamCarver {
                 minValue = M[i][width() - 1];
             }
         }
-        ret[width() - 1] = minIndex;
-        for (int i = width() - 2; i >= 0; i -= 1) {
-            double down, up, left;
-            if (minIndex == 0) {
-                up = Double.MAX_VALUE;
-            } else {
-                up = M[minIndex - 1][i];
-            }
-            left = M[minIndex][i];
-            if (i == height() - 1) {
-                down = Double.MAX_VALUE;
-            } else {
-                down = M[minIndex + 1][i];
-            }
-            if (left < Math.min(up, down)) {
-                ret[i] = minIndex;
-            } else if (up < down) {
-                minIndex -= 1;
-                ret[i] = minIndex;
-            } else {
-                minIndex += 1;
-                ret[i] = minIndex;
-            }
+        for (int i = width() - 1; i >= 0; i -= 1) {
+            ret[i] = minIndex;
+            minIndex = path[minIndex][i];
         }
         return ret;
     }
 
     /** sequence of indices for vertical seam */
     public int[] findVerticalSeam() {
+        int[][] path = new int[height()][width()];
         double[][] e = new double[height()][width()];
         double[][] M = new double[height()][width()];
         // set e
@@ -140,6 +129,13 @@ public class SeamCarver {
                     right = M[i - 1][j + 1];
                 }
                 M[i][j] = e[i][j] + Math.min(Math.min(left, right), up);
+                if (up < Math.min(left, right)) {
+                    path[i][j] = j;
+                } else if (left < right) {
+                    path[i][j] = j - 1;
+                } else {
+                    path[i][j] = j + 1;
+                }
             }
         }
         int[] ret = new int[height()];
@@ -151,29 +147,9 @@ public class SeamCarver {
                 minValue = M[height() - 1][i];
             }
         }
-        ret[height() - 1] = minIndex;
-        for (int i = height() - 2; i >= 0; i -= 1) {
-            double left, up, right;
-            if (minIndex == 0) {
-                left = Double.MAX_VALUE;
-            } else {
-                left = M[i][minIndex - 1];
-            }
-            up = M[i][minIndex];
-            if (i == width() - 1) {
-                right = Double.MAX_VALUE;
-            } else {
-                right = M[i][minIndex + 1];
-            }
-            if (left < Math.min(up, right)) {
-                minIndex -= 1;
-                ret[i] = minIndex;
-            } else if (up < right) {
-                ret[i] = minIndex;
-            } else {
-                minIndex += 1;
-                ret[i] = minIndex;
-            }
+        for (int i = height() - 1; i >= 0; i -= 1) {
+            ret[i] = minIndex;
+            minIndex = path[i][minIndex];
         }
         return ret;
     }
